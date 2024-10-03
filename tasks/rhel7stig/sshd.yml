@@ -32,7 +32,7 @@
     state: absent
     regexp: '^{{ item.name }}\s+(?!{{ item.value }})'
     validate: '/usr/sbin/sshd -T -f %s'
-  with_items: "{{ sshd_settings_rhel7 | selectattr('enabled') }}"
+  with_items: "{{ sshd_settings_rhel7 | selectattr('enabled') | list }}"
   notify:
     - Restart ssh
   tags:
